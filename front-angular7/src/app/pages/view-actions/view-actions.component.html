@@ -1,0 +1,21 @@
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Empresa</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Atualizado em</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empresa of empresas">
+      <th scope="row">{{ empresa?.id }}</th>
+      <td>{{ empresa?.nome }}</td>
+      <td>{{ empresa?.valor_acao | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td>{{ empresa?.atualizado_em | date: 'dd/MM/yyyy HH:mm' }}</td>
+      <td><button type="button" class="btn btn-dark" (click)="editar(empresa?.id)">Editar</button></td>
+    </tr>
+  </tbody>
+</table>

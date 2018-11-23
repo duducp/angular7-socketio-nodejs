@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label class="active">Código</label>
+    <input type="text" pInputText class="form-control" disabled [value]="empresa?.id" />
+  </div>
+
+  <div class="form-group">
+    <label class="active">Nome</label>
+    <input type="text" pInputText class="form-control" disabled [value]="empresa?.nome" />
+  </div>
+
+  <div class="form-group">
+    <label>Valor da ação</label>
+
+    <input
+      class="form-control autonumber"
+      type="text"
+      currencyMask [options]="{ prefix:'R$ ', align:'left', decimal:',', thousands:'.', allowZero: false, allowNegative: false }"
+      formControlName="valor_acao"
+      placeholder="Digite o valor da ação da empresa"
+      autofocus
+    />
+  </div>
+
+  <div *ngIf="form.get('valor_acao').errors && (form.get('valor_acao').touched || form.get('valor_acao').dirty)">
+    <p class="error" *ngIf="form.get('valor_acao').hasError('required')">Campo Obrigatório</p>
+  </div>
+
+  <button type="button" class="btn btn-light" (click)="cancelar()">Cancelar</button>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
